@@ -69,9 +69,9 @@ export default {
 
 /* background */
 body {
-  background-image: url("/images/pattern.png");
-  background-repeat: repeat;
-  background-size: 100px;
+  /* background-image: url("/images/pattern.png"); */
+  /* background-repeat: repeat; */
+  /* background-size: 100px; */
 }
 .theme--light.v-application {
   background: rgba(241, 241, 241, 0.97) !important;
