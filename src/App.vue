@@ -66,4 +66,14 @@ export default {
 .page-center > .v-card {
   flex: 0 1 620px;
 }
+
+/* background */
+body {
+  background-image: url("/images/pattern.png");
+  background-repeat: repeat;
+  background-size: 100px;
+}
+.theme--light.v-application {
+  background: rgba(241, 241, 241, 0.97) !important;
+}
 </style>
