@@ -9,9 +9,11 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>Александр Воронков</v-list-item-title>
-            <v-list-item-subtitle>Студент 4-го курса</v-list-item-subtitle>
-            <v-list-item-subtitle>Информационные системы (по отраслям)</v-list-item-subtitle>
+            <v-list-item-title>{{user.data.name}}&nbsp;{{user.data.surname}}</v-list-item-title>
+            <template v-if="user.data.role === 1">
+              <v-list-item-subtitle>{{dictionary.user_role(user.data.role)}} {{user.data.student.year}}-го курса</v-list-item-subtitle>
+              <v-list-item-subtitle>{{user.data.student.specialty.name}}</v-list-item-subtitle>
+            </template>
           </v-list-item-content>
         </v-list-item>
 
@@ -26,11 +28,9 @@
             <v-list-item-title>{{ link.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
 
-      <!-- base links (profile etc.) -->
-      <v-divider class="my-4" />
-      <v-list dense nav class="py-0">
+        <!-- Base links (like /profile) -->
+        <v-divider class="my-4" />
         <!-- if user -->
         <v-list-item link to="/profile">
           <v-list-item-icon>
@@ -97,10 +97,33 @@ export default {
       },
       {
         title: "Курсы",
-        url: "/cources",
+        url: "/courses",
         icon: "mdi-book-open-page-variant"
       }
     ]
-  })
+  }),
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  }
 };
 </script>
+
+<style>
+.col.page-navigation {
+  flex: 0 1 400px;
+}
+.col.page-content {
+  flex: 1;
+}
+.col.page-info {
+  flex: 0 1 300px;
+}
+.page-content .list-flex .v-list-item > div:first-child {
+  flex: 0 1 150px;
+}
+.page-content .list-flex .v-list-item > div:not(:first-child) {
+  flex: 1;
+}
+</style>

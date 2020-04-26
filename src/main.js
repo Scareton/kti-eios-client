@@ -4,7 +4,24 @@ import vuetify from './plugins/vuetify';
 import router from './router'
 import store from './store'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+const dictionary = {
+  user_role: (id) => {
+    let roles = {
+      0: "Не определена",
+      1: "Студент",
+      2: "Преподаватель",
+    }
+    return roles[id];
+  },
+  install: function (Vue) {
+    Object.defineProperty(Vue.prototype, 'dictionary', {
+      get() { return dictionary }
+    })
+  }
+}
+Vue.use(dictionary)
 
 new Vue({
   vuetify,

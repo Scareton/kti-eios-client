@@ -3,7 +3,7 @@
     <v-container>
       <v-card outlined>
         <v-card-text>
-          <h2>Электронная информационная образовательная среда КТИ</h2>
+          <h2>Новости</h2>
         </v-card-text>
       </v-card>
       <div class="row flex-nowrap">
@@ -12,15 +12,14 @@
             <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
           </v-card>
           <v-card outlined class="mb-4">
-            <v-skeleton-loader type="list-item-two-line"></v-skeleton-loader>
+            <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
           </v-card>
           <v-card outlined class="mb-4">
-            <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
+            <v-skeleton-loader type="list-item-two-line"></v-skeleton-loader>
           </v-card>
         </div>
         <div class="col page-content">
-          <v-card outlined>
-            <v-skeleton-loader type="table" class="mb-4"></v-skeleton-loader>
+          <v-card outlined class="mb-4" v-for="n in 4" :key="n">
             <v-skeleton-loader type="article"></v-skeleton-loader>
           </v-card>
         </div>
