@@ -49,6 +49,24 @@ const routes = [
       loginRequired: true,
     }
   },
+  {
+    path: '/login',
+    name: "Login",
+    component: () => import("../views/users/Login.vue"),
+    meta: {
+      title: "Авторизация в системе ЭИОС КТИ",
+      onlyNonregistered: true,
+    }
+  },
+  {
+    path: '/registration',
+    name: "Registration",
+    component: () => import("../views/users/Registration.vue"),
+    meta: {
+      title: "Регистрация в системе ЭИОС КТИ",
+      onlyNonregistered: true,
+    }
+  },
 ]
 
 const router = new VueRouter({
@@ -64,12 +82,25 @@ router.beforeEach((to, from, next) => {
   } else {
     document.title = "ЭИОС КТИ"
   }
-
+  
   // Проверка на регистрацию
+  let loginStatus = store.state.user.status;
+
+  // Если страница только для незарегистрированных
+  if (to.meta.onlyNonregistered && loginStatus === 'logged') {
+    // Переход на главную
+    next("/")
+  }
+
+  // Если страница защищена
   if (to.meta.loginRequired) {
-    if (store.state.user.status === 'logged') next()
+    // И пользователь авторизован - пропускаем
+    if (loginStatus === 'logged') next()
+    // И пользователь не авторизован - переход к авторизации
     else next("/login")
-  } else {
+  }
+  // Если страница не защищена
+  else {
     next()
   }
 })

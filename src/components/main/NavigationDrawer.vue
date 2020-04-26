@@ -1,8 +1,8 @@
 <template>
   <v-navigation-drawer v-model="drawer" :mini-variant="drawerMiniVariant" :expand-on-hover="drawerExpandOnHover" app>
     <!-- Links -->
-    <v-list dense nav class="py-0">
-      <v-list-item two-line :class="drawerMiniVariant && 'px-0'">
+    <v-list dense nav class="py-0" style="flex:1;">
+      <v-list-item two-line :class="drawerMiniVariant && 'px-0 mb-0'">
         <v-list-item-avatar>
           <template v-if="user.status === 'logged' && user.data.image">
             <img src="https://randomuser.me/api/portraits/men/81.jpg" />
@@ -93,6 +93,20 @@
       </template>
     </v-list>
 
+    <v-spacer />
+
+    <v-list dense nav class="py-0">
+      <v-list-item :class="drawerMiniVariant && 'px-0'">
+        <v-list-item-avatar>
+          <img src="/images/logo_dark.png" />
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-subtitle>ЭИОС КТИ</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
+    <!-- Диалоги -->
     <!-- Подтвердить выход -->
     <v-dialog v-model="logoutCheckState" width="unset">
       <v-card>
@@ -148,3 +162,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-navigation-drawer__content {
+  display: flex;
+  flex-direction: column;
+}
+</style>
