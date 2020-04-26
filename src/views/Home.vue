@@ -3,7 +3,7 @@
     <v-container>
       <v-card outlined>
         <v-card-text>
-          <h2>Электронная информационная образовательная среда КТИ</h2>
+          <h2 class="primary--text">Электронная информационная образовательная среда КТИ</h2>
         </v-card-text>
       </v-card>
       <div class="row flex-nowrap">
