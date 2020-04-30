@@ -38,7 +38,7 @@ export default {
   }),
   methods: {
     login() {
-      UserService.loginWithUsernameAndPassword(this.username, this.password)
+      UserService.loginWithUsernameAndPassword(this.formdata.username, this.formdata.password)
         .then(response => {
           console.log(response);
         })
