@@ -1,7 +1,7 @@
 import api from "./api";
 
 export default {
-  CreatUser(formdata) {
-    return api().post('/db/users', formdata)
+  loginWithUsernameAndPassword(username, password) {
+    return api().post('/users/login', { username, password })
   }
 };

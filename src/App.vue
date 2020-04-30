@@ -18,6 +18,15 @@
 
       <router-view />
     </v-content>
+
+    <!-- Global Snackbar -->
+    <v-snackbar v-model="snackbar.display" :color="snackbar.color">
+      <span :class="snackbar.textColor">
+        <template v-if="snackbar.message">{{snackbar.message}}</template>
+        <template v-else>Неизвестная ошибка</template>
+      </span>
+      <v-btn text dark @click="snackbar.display = false">Закрыть</v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -34,6 +43,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    snackbar() {
+      return this.$store.state.snackbar;
     }
   }
 };

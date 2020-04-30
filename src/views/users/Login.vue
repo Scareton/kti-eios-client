@@ -6,7 +6,7 @@
 
       <div class="pa-4">
         <v-form v-model="valid">
-          <v-text-field placeholder="Email" v-model="formdata.email"></v-text-field>
+          <v-text-field placeholder="Имя пользователя" v-model="formdata.username"></v-text-field>
           <v-text-field v-model="formdata.password" label="Пароль" required :type="show ? 'text':'password'" @click:append="show = !show" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"></v-text-field>
         </v-form>
       </div>
@@ -19,21 +19,33 @@
             <div class="primary--text ml-2">Зарегистрироваться</div>
           </v-btn>
         </div>
-        <v-btn text color="primary" @click="() => ({})">Войти</v-btn>
+        <v-btn text color="primary" @click="login">Войти</v-btn>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
+import UserService from "../../services/UserService";
 export default {
   data: () => ({
     valid: true,
     formdata: {
-      email: "",
+      username: "",
       password: ""
     },
-    show: false,
-  })
+    show: false
+  }),
+  methods: {
+    login() {
+      UserService.loginWithUsernameAndPassword(this.username, this.password)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(err => {
+          this.$store.commit("snackbar/error", err);
+        });
+    }
+  }
 };
 </script>
