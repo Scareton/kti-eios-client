@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import UserService from "./services/UserService";
 export default {
   name: "App",
   components: {
@@ -36,6 +37,18 @@ export default {
     snackbar() {
       return this.$store.state.snackbar;
     }
+  },
+  methods: {
+    checkIsUserLogged() {
+      if (document.cookie) {
+        UserService.refreshSession().then(response => {
+          this.$store.commit("user/login", response.data);
+        });
+      }
+    }
+  },
+  created() {
+    this.checkIsUserLogged();
   }
 };
 </script>
@@ -43,6 +56,7 @@ export default {
 <style>
 .container {
   max-width: 100% !important;
+  height: 100%;
 }
 .col.page-navigation {
   flex: 0 1 400px;
