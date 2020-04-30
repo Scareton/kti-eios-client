@@ -1,5 +1,5 @@
 const state = {
-  display: true,
+  display: false,
   message: "",
   status: ""
 }

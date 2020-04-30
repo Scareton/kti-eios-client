@@ -40,7 +40,9 @@ export default {
     login() {
       UserService.loginWithUsernameAndPassword(this.formdata.username, this.formdata.password)
         .then(response => {
-          console.log(response);
+          this.$store.commit("user/login", response.data);
+          this.$router.push("/");
+          this.$store.commit("snackbar/success", "Авторизация прошла успешно");
         })
         .catch(err => {
           this.$store.commit("snackbar/error", err);

@@ -3,20 +3,22 @@
     <navigation-drawer />
 
     <v-content>
-      <v-container v-if="user.status === 'unregistered' && loginBanner && $route.path !== '/login' && $route.path !== '/registration'">
-        <v-banner two-line>
-          <v-avatar slot="icon" color="primary" size="40">
-            <v-icon icon="mdi-lock" color="white">mdi-lock</v-icon>
-          </v-avatar>
-          <span>Некоторые курсы могут быть недоступны без авторизации.</span>
-          <template v-slot:actions>
-            <v-btn text color="primary" to="/login">Авторизоваться</v-btn>
-            <v-btn text @click="loginBanner = false">Закрыть сообщение</v-btn>
-          </template>
-        </v-banner>
-      </v-container>
+      <div class="pa-4" style="height:100%;">
+        <template v-if="user.status === 'unregistered' && loginBanner && $route.path !== '/login' && $route.path !== '/registration'">
+          <v-banner two-line class="mb-4">
+            <v-avatar slot="icon" color="primary" size="40">
+              <v-icon icon="mdi-lock" color="white">mdi-lock</v-icon>
+            </v-avatar>
+            <span>Некоторые курсы могут быть недоступны без авторизации.</span>
+            <template v-slot:actions>
+              <v-btn text color="primary" to="/login">Авторизоваться</v-btn>
+              <v-btn text @click="loginBanner = false">Закрыть сообщение</v-btn>
+            </template>
+          </v-banner>
+        </template>
 
-      <router-view />
+        <router-view />
+      </div>
     </v-content>
 
     <!-- Global Snackbar -->
@@ -47,6 +49,14 @@ export default {
     snackbar() {
       return this.$store.state.snackbar;
     }
+  },
+  methods: {
+    checkIsUserLogged() {
+      
+    }
+  },
+  created() {
+
   }
 };
 </script>

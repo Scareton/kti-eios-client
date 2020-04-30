@@ -1,73 +1,73 @@
 <template>
   <div>
-    <v-container>
-      <v-card outlined>
-        <v-card-text>
-          <h2>Личный кабинет</h2>
-        </v-card-text>
-      </v-card>
-      <div class="row flex-nowrap">
-        <div class="col page-navigation">
-          <v-card outlined class="mb-4">
-            <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
-          </v-card>
-          <v-card outlined class="mb-4">
-            <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
-          </v-card>
-          <v-card outlined class="mb-4">
-            <v-skeleton-loader type="list-item-two-line"></v-skeleton-loader>
-          </v-card>
-        </div>
-        <div class="col page-content">
-          <!-- Main fields (name, email) -->
-          <v-card outlined class="mb-4">
-            <v-list class="list-flex">
-              <!-- user image -->
-              <v-list-item @click="() => ({})" class="py-4">
-                <div class="body-1 grey--text text--darken-1">Аватар</div>
-                <div>
-                  <v-avatar><v-img :src="user.data.image"></v-img></v-avatar>
-                </div>
-              </v-list-item>
-              <!-- <v-divider class="mb-2" /> -->
-
-              <!-- other fields -->
-              <template v-for="(field) in profileFields">
-                <v-list-item :key="field.name" @click="() => ({})">
-                  <div class="body-1 grey--text text--darken-1">{{field.name}}</div>
-                  <div>{{field.data}}</div>
-                </v-list-item>
-              </template>
-            </v-list>
-          </v-card>
-
-          <!-- Role fields (student, teacher) -->
-
-          <v-card outlined>
-            <v-list class="list-flex">
-              <template v-for="(field) in profileRoleFields">
-                <v-list-item :key="field.name" @click="() => ({})">
-                  <div class="body-1 grey--text text--darken-1">{{field.name}}</div>
-                  <div>{{field.data}}</div>
-                </v-list-item>
-              </template>
-            </v-list>
-          </v-card>
-        </div>
-
-        <div class="col page-info">
-          <v-card outlined class="mb-4">
-            <v-skeleton-loader type="card-avatar"></v-skeleton-loader>
-          </v-card>
-          <v-card outlined class="mb-4">
-            <v-skeleton-loader type="card"></v-skeleton-loader>
-          </v-card>
-          <v-card outlined class="mb-4">
-            <v-skeleton-loader type="card-heading"></v-skeleton-loader>
-          </v-card>
-        </div>
+    <v-card outlined>
+      <v-card-text>
+        <h2>Личный кабинет</h2>
+      </v-card-text>
+    </v-card>
+    <div class="row flex-nowrap">
+      <div class="col page-navigation">
+        <v-card outlined class="mb-4">
+          <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
+        </v-card>
+        <v-card outlined class="mb-4">
+          <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
+        </v-card>
+        <v-card outlined class="mb-4">
+          <v-skeleton-loader type="list-item-two-line"></v-skeleton-loader>
+        </v-card>
       </div>
-    </v-container>
+      <div class="col page-content">
+        <!-- Main fields (name, email) -->
+        <v-card outlined class="mb-4">
+          <v-list class="list-flex">
+            <!-- user image -->
+            <v-list-item @click="() => ({})" class="py-4">
+              <div class="body-1 grey--text text--darken-1">Аватар</div>
+              <div>
+                <v-avatar>
+                  <v-img :src="user.data.image"></v-img>
+                </v-avatar>
+              </div>
+            </v-list-item>
+            <!-- <v-divider class="mb-2" /> -->
+
+            <!-- other fields -->
+            <template v-for="(field) in profileFields">
+              <v-list-item :key="field.name" @click="() => ({})">
+                <div class="body-1 grey--text text--darken-1">{{field.name}}</div>
+                <div>{{field.data}}</div>
+              </v-list-item>
+            </template>
+          </v-list>
+        </v-card>
+
+        <!-- Role fields (student, teacher) -->
+
+        <v-card outlined>
+          <v-list class="list-flex">
+            <template v-for="(field) in profileRoleFields">
+              <v-list-item :key="field.name" @click="() => ({})">
+                <div class="body-1 grey--text text--darken-1">{{field.name}}</div>
+                <div>{{field.data}}</div>
+              </v-list-item>
+            </template>
+          </v-list>
+        </v-card>
+      </div>
+
+      <div class="col page-info">
+        <v-card outlined class="mb-4">
+          <v-skeleton-loader type="card-avatar"></v-skeleton-loader>
+        </v-card>
+        <v-card outlined class="mb-4">
+          <v-skeleton-loader type="card"></v-skeleton-loader>
+        </v-card>
+        <v-card outlined class="mb-4">
+          <v-skeleton-loader type="card-heading"></v-skeleton-loader>
+        </v-card>
+      </div>
+    </div>
   </div>
 </template>
 

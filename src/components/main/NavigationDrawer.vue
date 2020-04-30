@@ -153,10 +153,10 @@ export default {
     },
     logoutCheckState: {
       get() {
-        return this.$store.state.user.system.logoutCheckState;
+        return this.$store.state.user.logoutCheckState;
       },
       set() {
-        this.$store.commit("user_system_logoutCheckState", false);
+        // this.$store.commit("user_system_logoutCheckState", false);
       }
     }
   }
