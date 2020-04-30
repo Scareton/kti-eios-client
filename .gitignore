@@ -19,3 +19,15 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+public/images/icons/chat.png
+public/images/icons/chat.svg
+public/images/icons/clipboard-check-outline.svg
+public/images/icons/clipboard-outline.png
+public/images/icons/emoticon.png
+public/images/icons/emoticon.svg
+public/images/icons/file.png
+public/images/icons/file.svg
+public/images/icons/television-guide.png
+public/images/icons/television-guide.svg
+public/images/icons/tie.png
+public/images/icons/tie.svg

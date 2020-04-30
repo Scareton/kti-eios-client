@@ -15,6 +15,21 @@ const dictionary = {
     }
     return roles[id];
   },
+  file_icon: (type) => {
+    let icons = {
+      "file": "mdi-file",
+      "pdf": "mdi-file-pdf"
+    }
+    return icons[type] || icons.file;
+  },
+  datetime_local: (date) => {
+    return date.toLocaleDateString("Ru-ru", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  },
   install: function (Vue) {
     Object.defineProperty(Vue.prototype, 'dictionary', {
       get() { return dictionary }

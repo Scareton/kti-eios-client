@@ -66,7 +66,21 @@ export default {
 .page-center > .v-card {
   flex: 0 1 620px;
 }
-
+a[target="_blank"]:after {
+  content: "\F03CC";
+  padding-left: 2px;
+  text-decoration: unset;
+  display: inline-block;
+  font: normal normal normal 24px/1 "Material Design Icons";
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ul + p {
+  margin-top: 16px;
+}
 /* background */
 body {
   /* background-image: url("/images/pattern.png"); */
