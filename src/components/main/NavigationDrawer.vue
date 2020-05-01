@@ -56,7 +56,7 @@
         </v-list-item>
 
         <!-- Выход -->
-        <v-list-item @click="$store.commit('user_system_logoutCheckState', true)">
+        <v-list-item @click="$store.commit('user/logoutCheckState', true)">
           <v-list-item-icon>
             <v-icon>mdi-logout-variant</v-icon>
           </v-list-item-icon>
@@ -113,8 +113,8 @@
         <v-card-title>Вы действительно хотите выйти?</v-card-title>
         <v-divider />
         <v-card-actions>
-          <v-btn text color="primary" @click="$store.dispatch('user_logout')">Выход</v-btn>
-          <v-btn text @click="$store.commit('user_system_logoutCheckState', false)">Отмена</v-btn>
+          <v-btn text color="primary" @click="$store.dispatch('user/logout')">Выход</v-btn>
+          <v-btn text @click="$store.commit('user/logoutCheckState', false)">Отмена</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -153,7 +153,7 @@ export default {
     },
     logoutCheckState: {
       get() {
-        return this.$store.state.user.logoutCheckState;
+        return this.$store.state.user.system.logoutCheckState;
       },
       set() {
         // this.$store.commit("user_system_logoutCheckState", false);

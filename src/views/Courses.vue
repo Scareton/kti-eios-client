@@ -8,13 +8,12 @@
     <div class="row flex-nowrap">
       <div class="col page-navigation">
         <v-card outlined class="mb-4">
-          <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
-        </v-card>
-        <v-card outlined class="mb-4">
-          <v-skeleton-loader type="list-item-three-line"></v-skeleton-loader>
-        </v-card>
-        <v-card outlined class="mb-4">
-          <v-skeleton-loader type="list-item-two-line"></v-skeleton-loader>
+          <v-skeleton-loader type="list-item-three-line"  v-if="coursesWaitFlag" />
+          <div v-else class="pa-4">
+            <div v-for="course in courses" :key="course._id">
+              {{course.name}}
+            </div>
+          </div>
         </v-card>
       </div>
       <div class="col page-content">
@@ -42,15 +41,29 @@
 </template>
 
 <script>
+import CourseService from "../services/CourseService"
 export default {
-  components: {}
+  data: () => ({
+    courses: [],
+    coursesWaitFlag: true,
+  }),
+  methods: {
+    getCourses() {
+      CourseService.getCourses().then(response => {
+        this.courses = response.data;
+        this.coursesWaitFlag = false;
+      })
+    }
+  },
+  created() {
+    this.getCourses();
+  }
 };
 </script>
 
 <style scoped>
 .courses-items > .col {
   flex: 1 1 33.3333333333%;
-  /* max-width: 33.3333333333%; */
   max-width: 50%;
 }
 </style>

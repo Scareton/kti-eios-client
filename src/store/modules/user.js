@@ -1,3 +1,5 @@
+import UserService from "../../services/UserService"
+
 const state = {
   status: "unregistered",
   data: {},
@@ -14,17 +16,16 @@ const mutations = {
   logoutCheckState: (state, payload) => {
     state.system.logoutCheckState = payload;
   },
-  logout: (state) => {
-    state.status = 'unregistered'
-    state.data = {};
-    state.system.logoutCheckState = false;
-    location.reload()
+  logout: () => {
+    UserService.logout().then(() => {
+      location.reload()
+    })
   }
 }
 
 const actions = {
   logout: ({ commit }) => {
-    commit("user_logout");
+    commit("logout");
   }
 }
 
