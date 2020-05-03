@@ -35,10 +35,17 @@ const routes = [
   {
     path: '/courses',
     name: 'Courses',
-    component: () => import('../views/Courses.vue'),
+    component: () => import('../views/courses/Courses.vue'),
     meta: {
       title: "Курсы - ЭИОС КТИ"
-    }
+    },
+    children: [
+      {
+        path: "/courses/:category",
+        name: "CourseCategory",
+        component: () => import('../views/courses/Category.vue'),
+      }
+    ]
   },
   {
     path: '/profile',
@@ -82,7 +89,7 @@ router.beforeEach((to, from, next) => {
   } else {
     document.title = "ЭИОС КТИ"
   }
-  
+
   // Проверка на регистрацию
   let loginStatus = store.state.user.status;
 
