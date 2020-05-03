@@ -60,12 +60,15 @@ export default {
 }
 .col.page-navigation {
   flex: 0 1 400px;
+  overflow: hidden;
 }
 .col.page-content {
   flex: 1;
+  overflow: hidden;
 }
 .col.page-info {
   flex: 0 1 300px;
+  overflow: hidden;
 }
 .page-content .list-flex .v-list-item > div:first-child {
   flex: 0 1 150px;
