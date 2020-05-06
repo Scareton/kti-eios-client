@@ -108,6 +108,10 @@ export default {
           {
             name: "Курс",
             data: this.user.data.student.year
+          },
+          {
+            name: "Академическая группа",
+            data: this.user.data.student.group.name
           }
         ];
       } else if (this.user.data.role === 2) {

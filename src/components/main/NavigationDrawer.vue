@@ -17,7 +17,7 @@
           <template v-if="user.status === 'logged'">
             <v-list-item-title>{{user.data.name}}&nbsp;{{user.data.surname}}</v-list-item-title>
             <template v-if="user.data.role === 1">
-              <v-list-item-subtitle>{{dictionary.user_role(user.data.role)}} {{user.data.student.year}}-го курса</v-list-item-subtitle>
+              <v-list-item-subtitle>{{dictionary.user_role(user.data.role)}} {{user.data.student.group.name}} - {{user.data.student.year}} курс</v-list-item-subtitle>
               <v-list-item-subtitle>{{user.data.student.specialty.name}}</v-list-item-subtitle>
             </template>
           </template>

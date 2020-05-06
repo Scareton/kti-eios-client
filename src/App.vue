@@ -71,7 +71,7 @@ export default {
   overflow: hidden;
 }
 .page-content .list-flex .v-list-item > div:first-child {
-  flex: 0 1 150px;
+  flex: 0 1 170px;
 }
 .page-content .list-flex .v-list-item > div:not(:first-child) {
   flex: 1;

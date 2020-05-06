@@ -41,9 +41,16 @@ const routes = [
     },
     children: [
       {
-        path: "/courses/:category",
-        name: "CourseCategory",
-        component: () => import('../views/courses/Category.vue'),
+        path: "/courses/:course",
+        name: "CoursePage",
+        component: () => import('../views/courses/CoursePage.vue'),
+        children: [
+          {
+            path: "/courses/:course/:content",
+            name: "CourseContentPage",
+            component: () => import("../views/courses/CourseContentPage.vue")
+          }
+        ]
       }
     ]
   },

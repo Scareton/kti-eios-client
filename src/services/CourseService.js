@@ -4,7 +4,13 @@ export default {
   getCourses() {
     return api().get('/courses')
   },
-  getCategories() {
-    return api().get('/courses/categories')
+  getCourse(id) {
+    return api().get(`/courses/${id}`)
+  },
+  getCoursesTest() {
+    return api().get('/coursestest')
+  },
+  markCourseContentFinished(courseId, contentId) {
+    return api().post(`/courses/${courseId}/${contentId}/finish`)
   }
 };

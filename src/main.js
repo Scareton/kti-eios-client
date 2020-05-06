@@ -30,6 +30,15 @@ const dictionary = {
       day: "numeric"
     });
   },
+  userCourseContentStatus: (value) => {
+    let statuses = {
+      0: "Не установлен",
+      1: "Просмотрено",
+      2: "Начато",
+      3: "Завершено"
+    }
+    return statuses[value];
+  },
   install: function (Vue) {
     Object.defineProperty(Vue.prototype, 'dictionary', {
       get() { return dictionary }
