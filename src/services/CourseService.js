@@ -5,12 +5,9 @@ export default {
     return api().get('/courses')
   },
   getCourse(id) {
-    return api().get(`/courses/${id}`)
+    return api().get(`/courses/get/${id}`)
   },
-  getCoursesTest() {
-    return api().get('/coursestest')
-  },
-  markCourseContentFinished(courseId, contentId) {
-    return api().post(`/courses/${courseId}/${contentId}/finish`)
+  markCourseContentFinished(contentId) {
+    return api().post(`/contents/${contentId}/finish`)
   }
 };

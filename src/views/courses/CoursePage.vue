@@ -5,7 +5,7 @@
     </v-card-title>
     <v-card-text>
       <div>{{course.description}}</div>
-      <course-contents :course="course" @updateCourse="updateCourse" />
+      <course-sections :course="course" @updateCourse="updateCourse" />
     </v-card-text>
   </v-card>
 </template>
@@ -14,7 +14,7 @@
 import CourseService from "../../services/CourseService";
 export default {
   components: {
-    CourseContents: () => import("../../components/courses/CourseContents")
+    CourseSections: () => import("../../components/courses/CourseSections")
   },
   data: () => ({
     course: null
@@ -23,6 +23,7 @@ export default {
     getCourse() {
       CourseService.getCourse(this.$route.params.course)
         .then(response => {
+          console.log(response.data)
           this.course = response.data;
         })
         .catch(err => {
