@@ -5,7 +5,7 @@
       <v-list-item two-line :class="drawerMiniVariant && 'px-0 mb-0'">
         <v-list-item-avatar>
           <template v-if="user.status === 'logged' && user.data.image">
-            <img src="https://randomuser.me/api/portraits/men/81.jpg" />
+            <img :src="user.data.image" />
           </template>
           <template v-else>
             <v-icon>mdi-account</v-icon>
@@ -19,6 +19,9 @@
             <template v-if="user.data.role === 1">
               <v-list-item-subtitle>{{dictionary.user_role(user.data.role)}} {{user.data.student.group.name}} - {{user.data.student.year}} курс</v-list-item-subtitle>
               <v-list-item-subtitle>{{user.data.student.specialty.name}}</v-list-item-subtitle>
+            </template>
+            <template v-if="user.data.role === 2">
+              <v-list-item-subtitle>{{dictionary.user_role(user.data.role)}}</v-list-item-subtitle>
             </template>
           </template>
           <!-- if non-user state -->

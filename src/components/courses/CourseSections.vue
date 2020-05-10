@@ -1,14 +1,16 @@
 <template>
   <div class="mt-4" v-if="Object.keys(course.sections).length > 0">
-    <!-- <div class="headline mb-2">Секции:</div> -->
-
-    <!-- Перебрать секции курса -->
-    <v-card class="pa-4 mb-2" outlined v-for="item in course.sections" :key="item._id">
-      <div class="title">{{item.name}}</div>
-
-      <!-- Вложения секции -->
-      <course-section-contents :section="item" />
-    </v-card>
+    <v-stepper v-model="stepper" vertical non-linear>
+      <template v-for="(section, i) in course.sections">
+        <v-stepper-step :key="`step_${i}`" :complete="stepper > i" :step="i + 1" editable>
+          {{section.name}}
+          <small>{{section.description}}</small>
+        </v-stepper-step>
+        <v-stepper-content :key="`content_${i}`" :step="i + 1">
+          <course-section-contents :section="section" @courseUpdated="courseUpdated" />
+        </v-stepper-content>
+      </template>
+    </v-stepper>
   </div>
 </template>
 
@@ -23,6 +25,14 @@ export default {
   components: {
     CourseSectionContents: () =>
       import("../../components/courses/CourseSectionContents")
+  },
+  data: () => ({
+    stepper: 1
+  }),
+  methods: {
+    courseUpdated(course) {
+      this.$emit("courseUpdated", course)
+    }
   }
 };
 </script>

@@ -1,13 +1,17 @@
 <template>
-  <v-card outlined v-if="course">
-    <v-card-title>
-      <h1>{{course.name}}</h1>
-    </v-card-title>
-    <v-card-text>
-      <div>{{course.description}}</div>
-      <course-sections :course="course" @updateCourse="updateCourse" />
-    </v-card-text>
-  </v-card>
+  <div v-if="course">
+    <v-card outlined>
+      <v-card-title>
+        <h1>{{course.name}}</h1>
+      </v-card-title>
+      <v-card-text>
+        <div>{{course.description}}</div>
+      </v-card-text>
+    </v-card>
+    <div>
+      <course-sections :course="course" @courseUpdated="updateCourse" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -23,7 +27,6 @@ export default {
     getCourse() {
       CourseService.getCourse(this.$route.params.course)
         .then(response => {
-          console.log(response.data)
           this.course = response.data;
         })
         .catch(err => {
