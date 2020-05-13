@@ -27,7 +27,9 @@ export default {
   computed: {
     course: {
       get() {
-        return this.$store.state.courses.loadedList[this.$route.params.course];
+        return this.$store.state.courses.list.find(
+          c => c._id === this.$route.params.course
+        );
       },
       set(value) {
         this.$store.commit("courses/update", { payload: value, app: this });

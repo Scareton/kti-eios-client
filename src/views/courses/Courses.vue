@@ -7,7 +7,8 @@
     </v-card>
     <div class="row flex-nowrap">
       <div class="col page-navigation">
-        <v-card outlined class="mb-4">
+        <course-calendar />
+        <v-card outlined class="my-4">
           <course-tree @changedSelectedItem="changedSelectedItem" />
         </v-card>
       </div>
@@ -22,9 +23,14 @@
             <v-col v-for="item in filterByQuery" :key="item._id" cols="12">
               <course-preview :item="item" />
             </v-col>
-          </v-row> -->
+          </v-row>-->
           <v-list>
-            <v-list-item v-for="item in filterByQuery" :key="item._id" two-line :to="`/courses/${item._id}`">
+            <v-list-item
+              v-for="item in filterByQuery"
+              :key="item._id"
+              two-line
+              :to="`/courses/${item._id}`"
+            >
               <course-preview :item="item" />
             </v-list-item>
           </v-list>
@@ -43,7 +49,7 @@
         <v-card outlined class="mb-4">
           <v-skeleton-loader type="card-heading"></v-skeleton-loader>
         </v-card>
-      </div> -->
+      </div>-->
     </div>
   </div>
 </template>
@@ -52,7 +58,8 @@
 export default {
   components: {
     CourseTree: () => import("../../components/courses/CourseTree"),
-    CoursePreview: () => import("../../components/courses/CoursePreview")
+    CoursePreview: () => import("../../components/courses/CoursePreview"),
+    CourseCalendar: () => import("../../components/courses/CourseCalendar")
   },
   data: () => ({
     test: null

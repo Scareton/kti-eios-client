@@ -39,7 +39,6 @@ let groupBy = (data, groups) => {
 
 const state = {
   list: [],
-  loadedList: {},
   dialogContentDisplay: false,
   dialogContentPath: null,
   navigation: {
@@ -88,7 +87,8 @@ const mutations = {
     state.list = payload;
   },
   update: (state, { payload, app }) => {
-    app.$set(state.loadedList, payload._id, payload)
+    let index = state.list.findIndex(item => item._id === payload._id);
+    app.$set(state.list, index, payload)
   },
   updateDialogContent: (state, payload) => {
     state.dialogContentDisplay = payload;

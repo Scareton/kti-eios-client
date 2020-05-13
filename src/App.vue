@@ -105,4 +105,7 @@ body {
 .theme--light.v-card.customCardBackground > div {
   background: #fff;
 }
+.theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday {
+  padding-top: 8px;
+}
 </style>

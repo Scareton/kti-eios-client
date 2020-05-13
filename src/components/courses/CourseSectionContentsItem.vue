@@ -38,20 +38,12 @@ export default {
 
       if (student) {
         code = student.s;
-      } else 
-        code = 0;
+      } else code = 0;
 
       return { code, text: this.dictionary.userCourseContentStatus(code) };
     },
     style() {
-      if (this.status.code === 0) return { color: "grey darken-3", dark: true };
-      if (this.status.code === 1) return { color: "blue-grey darken-2", dark: true };
-      if (this.status.code === 2) return { color: "light-blue darken-4", dark: true };
-      if (this.status.code === 3) return { color: "primary", dark: true };
-      if (this.status.code === 4) return { color: "red darken-4", dark: true };
-      if (this.status.code === 5) return { color: "green darken-2", dark: true };
-      if (this.status.code === 6) return { color: "blue darken-4", dark: true };
-      else return { color: "primary", dark: true };
+      return this.dictionary.courseContentStatusColor(this.status.code);
     }
   },
   methods: {

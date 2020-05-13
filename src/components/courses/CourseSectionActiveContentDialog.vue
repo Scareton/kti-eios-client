@@ -73,7 +73,7 @@ export default {
       return this.$store.state.courses.dialogContentPath;
     },
     content() {
-      let course = this.$store.state.courses.loadedList[this.path.course];
+      let course = this.$store.state.courses.list.find(c => c._id === this.path.course);
       let section = course.sections.find(s => s._id === this.path.section);
       let content = section.content.find(c => c._id === this.path.content);
       return content;
