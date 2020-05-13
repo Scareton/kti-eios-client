@@ -8,9 +8,6 @@ export default {
   getCourse(id) {
     return api().get(`/courses/get/${id}`)
   },
-  markCourseContentFinished(contentId) {
-    return api().post(`/contents/${contentId}/finish`)
-  },
   changeCourseContentUserStatus(content, status) {
     return new Promise((resolve, reject) => {
       // Получить текущего пользователя
@@ -32,5 +29,11 @@ export default {
         else reject("Отказ запроса");
       } else reject("Для преподавателей не учитывается состояние вложения");
     })
+  },
+  updateCourseSectionUserStatus(sectionId) {
+    return api().post(`/courses/sections/${sectionId}/update`)
+  },
+  sendCourseSectionContentUserAnswer(contentId, formdata) {
+    return api().post(`/courses/contents/${contentId}/answer`, formdata)
   }
 };

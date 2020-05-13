@@ -3,29 +3,13 @@
     <course-section-contents-item
       v-for="item in section.content"
       :key="item._id"
+      :course="course"
+      :section="section"
       :content="item"
       @clicked="openContent"
     />
-
-    <v-dialog v-model="contentDialog" hide-overlay fullscreen tile>
-      <v-card v-if="activeContent" tile>
-        <v-toolbar dark color="primary" flat>
-          <v-toolbar-title>{{section.name}} - {{activeContent.name}}</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn dark text @click="contentDialog = false">Сохранить</v-btn>
-          </v-toolbar-items>
-          <v-btn icon dark @click="contentDialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </v-toolbar>
-        <div class="pa-4">{{activeContent.description}}</div>
-      </v-card>
-    </v-dialog>
   </div>
-  <div v-else class="red--text text--darken-4">
-    Данный раздел закрыт
-  </div>
+  <div v-else class="red--text text--darken-4">Данный раздел закрыт</div>
 </template>
 
 <script>
@@ -35,26 +19,38 @@ export default {
     CourseSectionContentsItem: () => import("./CourseSectionContentsItem")
   },
   props: {
+    course: {
+      type: Object
+    },
     section: {
-      type: Object,
-      default: null
+      type: Object
     }
   },
-  data: () => ({
-    activeContent: null,
-    contentDialog: false
-  }),
   methods: {
     /** Открыть вложение */
     openContent(content) {
-      this.activeContent = content;
-      this.contentDialog = true;
       CourseService.changeCourseContentUserStatus(content, 1)
         .then(response => {
-          if (response.data) this.$emit("courseUpdated", response.data);
+          if (response.data) {
+            this.$store.commit("courses/update", {
+              payload: response.data,
+              app: this
+            });
+          }
+          
+          this.$store.commit("courses/updateDialogContentPath", {
+            course: this.course._id,
+            section: this.section._id,
+            content: content._id
+          });
         })
         .catch(err => {
           console.log(err);
+          this.$store.commit("courses/updateDialogContentPath", {
+            course: this.course._id,
+            section: this.section._id,
+            content: content._id
+          });
         });
     }
   }
@@ -62,4 +58,9 @@ export default {
 </script>
 
 <style>
+.contentContainer {
+  max-width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
 </style>

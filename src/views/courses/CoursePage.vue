@@ -9,8 +9,10 @@
       </v-card-text>
     </v-card>
     <div>
-      <course-sections :course="course" @courseUpdated="updateCourse" />
+      <course-sections :course="course" />
     </div>
+
+    <course-section-active-content-dialog />
   </div>
 </template>
 
@@ -18,23 +20,32 @@
 import CourseService from "../../services/CourseService";
 export default {
   components: {
-    CourseSections: () => import("../../components/courses/CourseSections")
+    CourseSections: () => import("../../components/courses/CourseSections"),
+    CourseSectionActiveContentDialog: () =>
+      import("../../components/courses/CourseSectionActiveContentDialog")
   },
-  data: () => ({
-    course: null
-  }),
+  computed: {
+    course: {
+      get() {
+        return this.$store.state.courses.loadedList[this.$route.params.course];
+      },
+      set(value) {
+        this.$store.commit("courses/update", { payload: value, app: this });
+      }
+    }
+  },
   methods: {
     getCourse() {
       CourseService.getCourse(this.$route.params.course)
         .then(response => {
-          this.course = response.data;
+          this.$store.commit("courses/update", {
+            payload: response.data,
+            app: this
+          });
         })
         .catch(err => {
           this.$store.commit("snackbar/error", err);
         });
-    },
-    updateCourse(course) {
-      this.course = course;
     }
   },
   created() {

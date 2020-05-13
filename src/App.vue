@@ -98,4 +98,11 @@ body {
 .theme--light.v-application {
   background: rgba(241, 241, 241, 0.97) !important;
 }
+.theme--light.v-card.customCardBackground {
+  background-color: rgb(241, 241, 241);
+}
+.theme--light.v-card.customCardBackground > .v-card__text,
+.theme--light.v-card.customCardBackground > div {
+  background: #fff;
+}
 </style>

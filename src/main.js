@@ -50,6 +50,13 @@ const dictionary = {
     }
     return types[value]
   },
+  courseContentTypeReqStatus: (value) => {
+    let types = {
+      1: 1,
+      2: 5,
+    }
+    return types[value]
+  },
   install: function (Vue) {
     Object.defineProperty(Vue.prototype, 'dictionary', {
       get() { return dictionary }

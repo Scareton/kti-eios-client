@@ -39,6 +39,9 @@ let groupBy = (data, groups) => {
 
 const state = {
   list: [],
+  loadedList: {},
+  dialogContentDisplay: false,
+  dialogContentPath: null,
   navigation: {
     open: []
   },
@@ -83,6 +86,16 @@ const getters = {
 const mutations = {
   get: (state, payload) => {
     state.list = payload;
+  },
+  update: (state, { payload, app }) => {
+    app.$set(state.loadedList, payload._id, payload)
+  },
+  updateDialogContent: (state, payload) => {
+    state.dialogContentDisplay = payload;
+  },
+  updateDialogContentPath: (state, payload) => {
+    state.dialogContentPath = payload;
+    state.dialogContentDisplay = true;
   },
   /**
    * Изменить список открытых директорий в навигации. 
