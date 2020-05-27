@@ -1,6 +1,6 @@
 <template>
-  <v-skeleton-loader type="list-item-three-line" v-if="coursesWaitFlag" />
-  <div v-else class="pa-4 courses-tree">
+  <!-- <v-skeleton-loader type="list-item-three-line" v-if="groupedCourses[0]" /> -->
+  <div class="pa-4 courses-tree">
     <v-treeview item-key="_id" :items="groupedCourses" activatable hoverable :active.sync="selected" return-object :open.sync="open" @update:active="changedSelectedItem">
       <template v-slot:label="{ item }">{{item.name}}</template>
       <template v-slot:prepend="{ item, open }">
@@ -15,7 +15,6 @@
 <script>
 export default {
   data: () => ({
-    coursesWaitFlag: true,
     selected: []
   }),
   computed: {
@@ -78,12 +77,6 @@ export default {
         }
       }
     }
-  },
-  created() {
-    // Получить курсы из базы данных
-    this.$store.dispatch("courses/get").then(() => {
-      this.coursesWaitFlag = false;
-    });
   },
   watch: {
     groupedCourses: {

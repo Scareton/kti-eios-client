@@ -8,6 +8,12 @@ const state = {
   }
 }
 
+const getters = {
+  data: state => {
+    return state.data
+  }
+}
+
 const mutations = {
   login: (state, payload) => {
     state.data = payload;
@@ -32,6 +38,7 @@ const actions = {
 export default {
   namespaced: true,
   state,
+  getters,
   mutations,
   actions
 }

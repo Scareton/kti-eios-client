@@ -1,13 +1,6 @@
 <template>
   <div>
-    <!-- @click:event="showMenu" -->
-    <v-calendar
-      ref="calendar"
-      :event-more="false"
-      v-model="value"
-      :weekdays="[1, 2, 3, 4, 5, 6, 0]"
-      :events="events"
-    >
+    <v-calendar ref="calendar" :event-more="false" v-model="value" :weekdays="[1, 2, 3, 4, 5, 6, 0]" :events="events">
       <template v-slot:event="{ event }">
         <div
           style="height: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; padding: 0 4px 0 8px"
@@ -18,13 +11,7 @@
         >{{event.name}}</div>
       </template>
     </v-calendar>
-    <v-menu
-      v-model="selectedOpen"
-      :activator="selectedElement"
-      :close-on-content-click="false"
-      rigth
-      offset-y
-    >
+    <v-menu v-model="selectedOpen" :activator="selectedElement" :close-on-content-click="false" rigth offset-y>
       <v-card width="400">
         <v-card-title>{{selectedEvent.name}}</v-card-title>
         <v-card-text>
@@ -59,17 +46,28 @@ export default {
           course.sections.forEach(section => {
             section.content.forEach(c => {
               if (c.deadline) {
-                let student = c.students[0];
-                let status = 0;
-                if (student !== undefined && student.s) status = student.s;
-                events.push({
-                  link: `/courses/${course._id}`,
-                  start: this.dictionary.formatDate(new Date(c.deadline)),
-                  course: course.name,
-                  section: section.name,
-                  name: c.name,
-                  style: this.dictionary.courseContentStatusColor(status)
-                });
+                if (this.$store.state.user.data.role === 1) {
+                  let student = c.students[0];
+                  let status = 0;
+                  if (student !== undefined && student.s) status = student.s;
+                  events.push({
+                    link: `/courses/${course._id}`,
+                    start: this.dictionary.formatDate(new Date(c.deadline)),
+                    course: course.name,
+                    section: section.name,
+                    name: c.name,
+                    style: this.dictionary.courseContentStatusColor(status)
+                  });
+                } else {
+                  events.push({
+                    link: `/courses/${course._id}`,
+                    start: this.dictionary.formatDate(new Date(c.deadline)),
+                    course: course.name,
+                    section: section.name,
+                    name: c.name,
+                    style: this.dictionary.courseContentStatusColor(0)
+                  });
+                }
               }
             });
           });
@@ -78,7 +76,6 @@ export default {
       } else this.events = [];
     },
     showMenu(nativeEvent, event) {
-      console.log(nativeEvent, event);
       const open = () => {
         this.selectedEvent = event;
         this.selectedElement = nativeEvent.target;
@@ -98,9 +95,9 @@ export default {
   watch: {
     courses: {
       handler() {
-        console.log("changed")
         this.getEvents();
-      }
+      },
+      immediate: true
     }
   }
 };

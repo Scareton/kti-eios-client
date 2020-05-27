@@ -96,6 +96,9 @@ export default {
     },
     profileRoleFields() {
       if (this.user.data.role === 1) {
+        let groupname = "";
+        let group = this.$store.state.groups.group
+        if (group) groupname = group.name
         return [
           {
             name: "Роль",
@@ -111,14 +114,23 @@ export default {
           },
           {
             name: "Академическая группа",
-            data: this.user.data.student.group.name
+            data: groupname
           }
         ];
       } else if (this.user.data.role === 2) {
+        let courses = this.$store.state.courses.list.map(c => c.name).join(", ")
         return [
           {
             name: "Роль",
             data: this.dictionary.user_role(this.user.data.role)
+          },
+          // {
+          //   name: "Предметы",
+          //   data: this.$store.state.courses.groups.find(g => g.alias === "discipline").items
+          // },
+          {
+            name: "Курсы",
+            data: courses
           }
         ];
       } else {

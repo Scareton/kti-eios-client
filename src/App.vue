@@ -36,6 +36,18 @@ export default {
     snackbar() {
       return this.$store.state.snackbar;
     }
+  },
+  created() {
+    this.$store
+      .dispatch("courses/get")
+      .then(() => {
+        this.$store.dispatch("groups/get").catch(err => {
+          this.$store.commit("snackbar/error", err);
+        });
+      })
+      .catch(err => {
+        this.$store.commit("snackbar/error", err);
+      });
   }
 };
 </script>

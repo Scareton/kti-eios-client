@@ -1,3 +1,13 @@
+let userCCStatuses = {
+  0: "Не начато",
+  1: "Просмотрено",
+  2: "Начато",
+  3: "Задание отправлено",
+  4: "Работа не зачтена",
+  5: "Работа зачтена",
+  // 6: "Завершено"
+}
+
 const dictionary = {
   user_role: (id) => {
     let roles = {
@@ -22,17 +32,20 @@ const dictionary = {
       day: "numeric"
     });
   },
+
   userCourseContentStatus: (value) => {
-    let statuses = {
-      0: "Не начато",
-      1: "Просмотрено",
-      2: "Начато",
-      3: "Задание отправлено",
-      4: "Работа не зачтена",
-      5: "Работа зачтена",
-      6: "Завершено"
+    return userCCStatuses[value];
+  },
+  getAllUserCourseContentStatuses: () => {
+    let result = [];
+    for (const key in userCCStatuses) {
+      const element = userCCStatuses[key];
+      result.push({
+        text: element,
+        value: Number(key)
+      })
     }
-    return statuses[value];
+    return result;
   },
   courseContentType: (value) => {
     let types = {

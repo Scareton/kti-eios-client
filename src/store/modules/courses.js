@@ -83,7 +83,7 @@ const getters = {
 }
 
 const mutations = {
-  get: (state, payload) => {
+  set: (state, payload) => {
     state.list = payload;
   },
   update: (state, { payload, app }) => {
@@ -105,14 +105,14 @@ const mutations = {
     state.navigation.open = payload;
   }
 }
+
 const actions = {
-  /**
-   * Получить список курсов из базы данных
-   */
   get: ({ commit }) => {
     return new Promise((resolve, reject) => {
-      CourseService.getCourses()
-        .then(response => {
+      CourseService.getCourses().then(response => {
+        if (response.data) {
+          response.data;
+
           // Заполним перевод параметров на русский в объекте state.groups.items
           response.data.forEach(item => {
             state.groups.forEach(group => {
@@ -120,14 +120,11 @@ const actions = {
               group.items[item[group.alias].alias] = item[group.alias].name
             });
           });
-          commit("get", response.data)
-          resolve();
-        })
-        .catch(err => {
-          console.error(err)
-          reject();
-          commit("snackbar/error", err, { root: true })
-        })
+          commit("set", response.data)
+          resolve()
+        }
+        else reject()
+      })
     })
   }
 }

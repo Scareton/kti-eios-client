@@ -3,12 +3,12 @@ import store from "../store/index"
 
 export default {
   getCourses() {
-    return api().get('/courses')
+    return api().get(`/courses`)
   },
   getCourse(id) {
     return api().get(`/courses/get/${id}`)
   },
-  changeCourseContentUserStatus(content, status) {
+  changeCourseContentUserStatus(content, status, student, rate) {
     return new Promise((resolve, reject) => {
       // Получить текущего пользователя
       let user = store.state.user.data;
@@ -27,7 +27,11 @@ export default {
 
         // В ином случае - выполнить запрос
         else reject("Отказ запроса");
-      } else reject("Для преподавателей не учитывается состояние вложения");
+      } else {
+        if (student) {
+          resolve(api().post(`/courses/contents/${content._id}/status`, { status: status, user: student, rate: rate }))
+        } else reject("Для преподавателей не учитывается состояние вложения");
+      }
     })
   },
   updateCourseSectionUserStatus(sectionId) {
