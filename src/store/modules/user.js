@@ -33,12 +33,13 @@ const actions = {
   logout: ({ commit }) => {
     commit("logout");
   },
-  login: ({ commit, dispatch }) => {
+  login: ({ commit, dispatch }, payload) => {
     new Promise((resolve, reject) => {
       dispatch("courses/get", null, { root: true }).then(() => {
-        commit("login")
+        commit("login", payload)
         resolve();
       }).catch(err => {
+        console.log(err)
         reject(err)
       })
     })

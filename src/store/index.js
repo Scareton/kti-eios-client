@@ -20,13 +20,16 @@ export default new Vuex.Store({
     "breakpoints": [
       { "name": "desktop", "value": 768 },
       { "name": "mobile", "value": 0 }
-    ],
-    "breakpoint": "desktop"
+    ]
+  },
+  getters: {
+    breakpoint: state => {
+      return state.breakpoints.find(b => state.width >= b.value).name
+    },
   },
   mutations: {
     setWidth: (state, payload) => {
       state.width = payload;
-      state.breakpoint = state.breakpoints.find(b => payload >= b.value).name
     },
   },
   actions: {

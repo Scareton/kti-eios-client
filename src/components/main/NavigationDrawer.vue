@@ -164,7 +164,7 @@ export default {
       }
     },
     breakpoint() {
-      return this.$store.state.breakpoint;
+      return this.$store.getters.breakpoint
     }
   },
   methods: {
