@@ -28,6 +28,8 @@ let initialize = function () {
 // Сервис управления состоянием пользователя
 import UserService from "./services/UserService";
 
+import './registerServiceWorker'
+
 // Перед инициализацией пользователя выполняется проверка авторизации
 if (document.cookie) {
   // Если у клиента существует запись cookie
