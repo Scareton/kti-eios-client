@@ -48,9 +48,13 @@ export default {
         this.formdata.password
       )
         .then(response => {
-          this.$store.commit("user/login", response.data);
-          this.$router.push("/");
-          this.$store.commit("snackbar/success", "Авторизация прошла успешно");
+          this.$store.dispatch("user/login", response.data).then(() => {
+            this.$router.push("/");
+            this.$store.commit("snackbar/success", "Авторизация прошла успешно");
+          }).catch(err => {
+            this.$store.commit("snackbar/error", err);
+          })
+          
         })
         .catch(err => {
           this.$store.commit("snackbar/error", err);

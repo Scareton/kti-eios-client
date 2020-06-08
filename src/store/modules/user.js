@@ -32,6 +32,16 @@ const mutations = {
 const actions = {
   logout: ({ commit }) => {
     commit("logout");
+  },
+  login: ({ commit, dispatch }) => {
+    new Promise((resolve, reject) => {
+      dispatch("courses/get", null, { root: true }).then(() => {
+        commit("login")
+        resolve();
+      }).catch(err => {
+        reject(err)
+      })
+    })
   }
 }
 

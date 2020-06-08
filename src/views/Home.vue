@@ -40,6 +40,9 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
+  created() {
+    this.$store.commit("snackbar/success", "Главная страница в разработке")
+  }
 };
 </script>
