@@ -8,13 +8,19 @@
         </template>
         <template v-else>Не установлен</template>
       </template>
+
+      <!--  -->
       <template v-slot:item.contentData.a.s="{ item }">
         <template v-if="item.contentData.a && item.contentData.a.s">
           <v-text-field v-model="item.contentData.a.s" type="number" max="100" :min="item.contentData.s === 5 ? '61' : '0'" />
         </template>
       </template>
+
+      <!-- Действия -->
       <template v-slot:item.contentData.a.p="{ item }">
-        <v-chip :href="`/api${item.contentData.a.p}`" target="_blank" color="primary">Открыть файл</v-chip>
+        <template v-if="item.contentData.a">
+          <v-chip :href="`/api${item.contentData.a.p}`" target="_blank" color="primary">Открыть файл</v-chip>
+        </template>
         <v-chip @click="saveChanges(item)" color="primary" class="ml-1" :disabled="!checkChanges(item)">Сохранить</v-chip>
       </template>
     </v-data-table>
@@ -62,6 +68,8 @@ export default {
   }),
   computed: {
     headers() {
+      // let file = null;
+      // if (this.)
       return [
         {
           text: "ФИО",
@@ -105,10 +113,13 @@ export default {
     },
     checkChanges(student) {
       let localStatus = student.contentData.s;
-      let localRate = Number(student.contentData.a.s);
-
       let BaseStatus = student.contentDataBase.s;
-      let BaseRate = Number(student.contentDataBase.a.s);
+      let localRate = null;
+      let BaseRate = null;
+      if (student.contentData.a) {
+        localRate = Number(student.contentData.a.s);
+        BaseRate = Number(student.contentDataBase.a.s);
+      }
 
       if (localStatus === BaseStatus && localRate === BaseRate) return false;
       return true;

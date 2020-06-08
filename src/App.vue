@@ -4,7 +4,6 @@
 
     <v-content>
       <v-container>
-        <need-auth-banner />
         <router-view />
       </v-container>
     </v-content>
@@ -24,8 +23,7 @@
 export default {
   name: "App",
   components: {
-    NavigationDrawer: () => import("./components/main/NavigationDrawer"),
-    NeedAuthBanner: () => import("./components/user/NeedAuthBanner")
+    NavigationDrawer: () => import("./components/main/NavigationDrawer")
   },
 
   data: () => ({}),
@@ -113,11 +111,25 @@ body {
 .theme--light.v-card.customCardBackground {
   background-color: rgb(241, 241, 241);
 }
-.theme--light.v-card.customCardBackground > .v-card__text,
-.theme--light.v-card.customCardBackground > div {
-  background: #fff;
-}
 .theme--light.v-calendar-weekly .v-calendar-weekly__head-weekday {
   padding-top: 8px;
+}
+@media (max-width: 767px) {
+  .v-application .row {
+    flex-direction: column;
+  }
+  .col.page-navigation {
+    flex: 1;
+  }
+  .v-application .v-banner__actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .v-card__actions {
+    flex-direction: column;
+  }
+  .page-center {
+    padding: 0;
+  }
 }
 </style>

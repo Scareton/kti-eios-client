@@ -56,11 +56,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.contentContainer {
-  max-width: 70%;
-  margin-right: auto;
-  margin-left: auto;
-}
-</style>

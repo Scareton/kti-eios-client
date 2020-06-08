@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="drawer" :mini-variant="drawerMiniVariant" :expand-on-hover="drawerExpandOnHover" app>
+  <v-navigation-drawer v-model="drawer" :mini-variant="drawerMiniVariant" :expand-on-hover="drawerExpandOnHover" app mobile-break-point="767">
     <!-- Links -->
     <v-list dense nav class="py-0" style="flex:1;">
       <v-list-item two-line :class="drawerMiniVariant && 'px-0 mb-0'">
@@ -104,7 +104,7 @@
           <img src="/images/logo_dark.png" />
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-subtitle>ЭИОС КТИ</v-list-item-subtitle>
+          <v-list-item-subtitle>ЭИОС КТИ (Филиал ВолгГТУ)</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -127,9 +127,10 @@
 <script>
 export default {
   data: () => ({
-    drawer: true,
     drawerMiniVariant: true,
     drawerExpandOnHover: true,
+    width: 0,
+    drawer: false,
 
     // navigation
     links: [
@@ -160,6 +161,33 @@ export default {
       },
       set() {
         // this.$store.commit("user_system_logoutCheckState", false);
+      }
+    },
+    breakpoint() {
+      return this.$store.state.breakpoint;
+    }
+  },
+  methods: {
+    updateWidth() {
+      this.$store.commit("setWidth", window.innerWidth);
+      this.width = window.innerWidth;
+    }
+  },
+  mounted() {
+    this.updateWidth();
+  },
+  created() {
+    window.addEventListener("resize", this.updateWidth);
+  },
+  watch: {
+    breakpoint(value) {
+      if (value === "desktop") {
+        this.drawer = true;
+        this.drawerMiniVariant = true;
+      } else {
+        this.drawer = false;
+        this.drawerMiniVariant = false;
+        this.drawerExpandOnHover = false;
       }
     }
   }
