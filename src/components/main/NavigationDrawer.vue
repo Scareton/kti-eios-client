@@ -181,6 +181,7 @@ export default {
   },
   watch: {
     breakpoint(value) {
+      console.log(value)
       if (value === "desktop") {
         this.drawer = true;
         this.drawerMiniVariant = true;

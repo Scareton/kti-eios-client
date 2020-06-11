@@ -3,7 +3,6 @@
     <v-card outlined>
       <div class="pa-4" v-html="content.content"></div>
     </v-card>
-
     <!-- Форма отправки задания -->
     <v-card outlined class="pa-4 mt-1" v-if="content.type === 2 && $store.state.user.data.role === 1">
       <template v-if="!content.students[0] || ((!content.students[0].a || !content.students[0].a.p) || content.students[0].s === 4)">
@@ -12,6 +11,7 @@
         <div v-if="loadedFile">
           <v-btn outlined color="primary" @click="sendFile">Отправить файл "{{loadedFile.name}}" на проверку</v-btn>
         </div>
+       
       </template>
       <template v-else>
         <v-banner two-line class="answer-banner">

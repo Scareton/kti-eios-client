@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="mb-4" v-if="user.status === 'unregistered' && loginBanner && $route.path !== '/login' && $route.path !== '/registration'"> -->
   <div class="mb-4">
     <v-banner two-line>
       <v-avatar slot="icon" color="primary" size="40">

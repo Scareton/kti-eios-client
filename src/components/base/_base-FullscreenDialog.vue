@@ -13,7 +13,7 @@
             </v-toolbar>
           </div>
         </div>
-        <div :class="['pa-0 my-0 mx-auto', {'col-9': breakpoint === 'desktop'}, {'col': breakpoint !== 'desktop'}]">
+        <div :class="['pa-0 mt-6 mx-auto', {'col-9': breakpoint === 'desktop'}, {'col': breakpoint !== 'desktop'}]">
           <slot @dialogClose="_display = false" />
         </div>
       </v-card>
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     breakpoint() {
-      return this.$store.state.breakpoint
+      return this.$store.getters.breakpoint
     },
     _display: {
       get() {

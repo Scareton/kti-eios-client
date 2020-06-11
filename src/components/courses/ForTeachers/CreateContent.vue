@@ -132,12 +132,12 @@ export default {
     }
   },
   created() {
-    this.$nextTick(function() {
-      if (this.$refs.btn_5eb46b3a8b75ba0992994b99) {
-        console.log(this.course._id);
-        this.createContent();
-      }
-    });
+    // this.$nextTick(function() {
+    //   if (this.$refs.btn_5eb46b3a8b75ba0992994b99) {
+    //     console.log(this.course._id);
+    //     this.createContent();
+    //   }
+    // });
   }
 };
 </script>
