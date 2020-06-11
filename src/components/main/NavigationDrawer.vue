@@ -164,7 +164,7 @@ export default {
       }
     },
     breakpoint() {
-      return this.$store.getters.breakpoint
+      return this.$store.getters.breakpoint;
     }
   },
   methods: {
@@ -180,16 +180,20 @@ export default {
     window.addEventListener("resize", this.updateWidth);
   },
   watch: {
-    breakpoint(value) {
-      console.log(value)
-      if (value === "desktop") {
-        this.drawer = true;
-        this.drawerMiniVariant = true;
-      } else {
-        this.drawer = false;
-        this.drawerMiniVariant = false;
-        this.drawerExpandOnHover = false;
-      }
+    breakpoint: {
+      handler(value) {
+        console.log(value);
+        if (value === "desktop") {
+          this.drawer = true;
+          this.drawerMiniVariant = true;
+        } else {
+          console.log("123");
+          this.drawer = false;
+          this.drawerMiniVariant = false;
+          this.drawerExpandOnHover = false;
+        }
+      },
+      immediate: true,
     }
   }
 };
